@@ -173,8 +173,12 @@ class ApplicableTestCase:
             )
 
         cls.configure_application()
-        cls.initialize_orm()
-        cls.mockup()
+        try:
+            cls.initialize_orm()
+            cls.mockup()
+        except:
+            cls.teardown_class()
+            raise
 
     @classmethod
     def teardown_class(cls):
