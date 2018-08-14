@@ -154,7 +154,8 @@ class ApplicableTestCase:
                 break
 
         DBSession.remove()
-        cls._engine.dispose()
+        if cls._engine is not None:
+            cls._engine.dispose()
 
         # Dropping the previousely created database
         with DBManager() as m:
