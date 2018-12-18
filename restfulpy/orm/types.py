@@ -3,7 +3,7 @@ from sqlalchemy import Unicode, TypeDecorator
 
 
 class FakeJson(TypeDecorator):  # pragma: no cover
-    impl = Unicode
+    impl = Unicode(3000)
 
     def process_bind_param(self, value, engine):
         return ujson.dumps(value)

@@ -16,14 +16,14 @@ class Email(RestfulpyTask):
 
 
     template_filename = Field(Unicode(200), nullable=True)
-    to = Field(Unicode(100), json='to')
-    subject = Field(Unicode(256), json='subject')
-    cc = Field(Unicode(100), nullable=True, json='cc')
-    bcc = Field(Unicode(100), nullable=True, json='bcc')
+    to = Field(Unicode(254), json='to')
+    subject = Field(Unicode(78), json='subject')
+    cc = Field(Unicode(254), nullable=True, json='cc')
+    bcc = Field(Unicode(254), nullable=True, json='bcc')
     _body = Field('body', FakeJson)
 
     from_ = Field(
-        Unicode(100),
+        Unicode(254),
         json='from',
         default=lambda: settings.messaging.default_sender
     )
@@ -50,7 +50,8 @@ class Email(RestfulpyTask):
         return Field(
             Integer,
             ForeignKey('restfulpy_task.id'),
-            primary_key=True, json='id'
+            primary_key=True,
+            json='id',
         )
 
     def do_(self, context, attachments=None):
